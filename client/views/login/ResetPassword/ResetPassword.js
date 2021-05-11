@@ -92,7 +92,7 @@ const ResetPassword = () => {
 				<Field>
 					<Field.Label>{t(changePasswordReason)}</Field.Label>
 					<Field.Row>
-						<TextInput
+						xx<TextInput
 							placeholder={t('Type_your_new_password')}
 							type='password'
 							name='newPassword'

@@ -9,6 +9,8 @@ import Settings from './models/Settings';
 import Subscriptions from './models/Subscriptions';
 import Uploads from './models/Uploads';
 import UserDataFiles from './models/UserDataFiles';
+import Organizations from './models/Organizations';
+import OrganizationUsers from './models/OrganizationUsers';
 import Users from './models/Users';
 import Sessions from './models/Sessions';
 import Statistics from './models/Statistics';
@@ -61,6 +63,8 @@ export {
 	Subscriptions,
 	Uploads,
 	UserDataFiles,
+	Organizations,
+	OrganizationUsers,
 	Users,
 	Sessions,
 	Statistics,

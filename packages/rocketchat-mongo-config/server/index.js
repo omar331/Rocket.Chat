@@ -26,7 +26,7 @@ HTTP.call = function _call(method, url, options = {}, callback) {
 // https://github.com/nodejs/node/pull/16853
 // This is fixed in Node 10, but this supports LTS versions
 tls.DEFAULT_ECDH_CURVE = 'auto';
-
+console.log(' aaaaaaaaaaaaaa')
 const mongoConnectionOptions = {
 	// add retryWrites=false if not present in MONGO_URL
 	...!process.env.MONGO_URL.includes('retryWrites') && { retryWrites: false },

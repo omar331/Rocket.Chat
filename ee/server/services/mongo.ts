@@ -17,6 +17,7 @@ export enum Collections {
 	Settings = 'rocketchat_settings',
 }
 
+
 let db: Db;
 export async function getConnection(poolSize = 5): Promise<Db> {
 	if (!db) {

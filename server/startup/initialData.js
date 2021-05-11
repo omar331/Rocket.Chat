@@ -5,15 +5,28 @@ import _ from 'underscore';
 import { RocketChatFile } from '../../app/file';
 import { FileUpload } from '../../app/file-upload';
 import { addUserRoles, getUsersInRole } from '../../app/authorization';
-import { Users, Settings, Rooms } from '../../app/models';
+import { Organizations, OrganizationUsers, Users, Settings, Rooms } from '../../app/models';
 import { settings } from '../../app/settings';
 import { checkUsernameAvailability, addUserToDefaultChannels } from '../../app/lib';
 
+const DEFAULT_ORGANIZATION_ID = 'DEFAULT_ORGANIZATION';
+
 Meteor.startup(function() {
 	Meteor.defer(() => {
+		if ( !Organizations.findOneById(DEFAULT_ORGANIZATION_ID )) {
+			Organizations.create(
+				{
+					_id: DEFAULT_ORGANIZATION_ID,
+					alias: 'default',
+					name: 'Default Organization'
+				}
+			);
+		}
+
 		if (!Rooms.findOneById('GENERAL')) {
 			Rooms.createWithIdTypeAndName('GENERAL', 'c', 'general', {
 				default: true,
+				oid: DEFAULT_ORGANIZATION_ID
 			});
 		}
 
@@ -30,6 +43,8 @@ Meteor.startup(function() {
 			});
 
 			addUserRoles('rocket.cat', 'bot');
+
+			OrganizationUsers.addUserToOrganization( DEFAULT_ORGANIZATION_ID, 'rocket.cat', ['bot'])
 
 			const buffer = Buffer.from(Assets.getBinary('avatars/rocketcat.png'));
 
@@ -114,6 +129,8 @@ Meteor.startup(function() {
 				Accounts.setPassword(id, process.env.ADMIN_PASS);
 
 				addUserRoles(id, 'admin');
+
+				OrganizationUsers.addUserToOrganization( DEFAULT_ORGANIZATION_ID, id, ['admin'])
 			} else {
 				console.log('Users with admin role already exist; Ignoring environment variables ADMIN_PASS'.red);
 			}
@@ -129,6 +146,8 @@ Meteor.startup(function() {
 					console.log('Inserting initial user:'.green);
 					console.log(JSON.stringify(initialUser, null, 2).green);
 					Users.create(initialUser);
+
+					OrganizationUsers.addUserToOrganization( DEFAULT_ORGANIZATION_ID, initialUser._id, initialUser.roles || ['user'])
 				}
 			} catch (e) {
 				console.log('Error processing environment variable INITIAL_USER'.red, e);
