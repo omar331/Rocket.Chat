@@ -1,15 +1,10 @@
-import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
 import _ from 'underscore';
-import s from 'underscore.string';
 
 import { Base } from './_Base';
-import Subscriptions from './Subscriptions';
-import { settings } from '../../../settings/server/functions/settings';
 
 
 export class OrganizationUsers extends Base {
-	constructor(...args) {
+	constructor() {
 		super('organization_users');
 	}
 
@@ -24,14 +19,13 @@ export class OrganizationUsers extends Base {
 		return this.insert(orgUser);
 	}
 
-	addUserToOrganization( orgId, userId, roles ) {
-		if ( ! this.findOne({orgId, userId}) ) {
+	addUserToOrganization(orgId, userId, roles) {
+		if (! this.findOne({ orgId, userId })) {
 			this.insert({
-				orgId, userId, roles
-			})
+				orgId, userId, roles,
+			});
 		}
 	}
-
 }
 
 export default new OrganizationUsers();
