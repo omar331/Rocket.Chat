@@ -11,7 +11,6 @@ import { passwordPolicy } from '../lib/passwordPolicy';
 import { validateEmailDomain } from '../lib';
 import { validateUserRoles } from '../../../../ee/app/authorization/server/validateUserRoles';
 import { saveUserIdentity } from './saveUserIdentity';
-import { escapeHTML } from '../../../../lib/escapeHTML';
 
 import { checkEmailAvailability, checkUsernameAvailability, setUserAvatar, setEmail, setStatusText } from '.';
 

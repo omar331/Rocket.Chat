@@ -6,7 +6,6 @@ import s from 'underscore.string';
 import { Base } from './_Base';
 import Subscriptions from './Subscriptions';
 import { settings } from '../../../settings/server/functions/settings';
-import { escapeRegExp } from '../../../../lib/escapeRegExp';
 
 
 export class OrganizationUsers extends Base {
