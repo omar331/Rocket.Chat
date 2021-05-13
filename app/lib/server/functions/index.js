@@ -24,6 +24,7 @@ export { saveCustomFields } from './saveCustomFields';
 export { saveCustomFieldsWithoutValidation } from './saveCustomFieldsWithoutValidation';
 export { saveUser } from './saveUser';
 export { saveOrganization } from './saveOrganization';
+export { addUserToOrganization } from './addUserToOrganization';
 export { sendMessage } from './sendMessage';
 export { setEmail } from './setEmail';
 export { setRealName, _setRealName } from './setRealName';

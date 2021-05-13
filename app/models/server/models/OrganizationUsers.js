@@ -19,12 +19,16 @@ export class OrganizationUsers extends Base {
 		return this.insert(orgUser);
 	}
 
-	addUserToOrganization(orgId, userId, roles) {
-		if (! this.findOne({ orgId, userId })) {
-			this.insert({
-				orgId, userId, roles,
+	addUserToOrganization(organizationId, userId, roles) {
+		const organizationUser = this.findOne({ organizationId, userId });
+
+		if (!organizationUser) {
+			return this.insert({
+				createdAt: new Date(), organizationId, userId, roles,
 			});
 		}
+
+		return this.upsert({ _id: organizationUser._id }, { $set: { roles } });
 	}
 }
 
