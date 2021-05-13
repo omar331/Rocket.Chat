@@ -41,7 +41,7 @@ describe('[Organizations]', function() {
 	describe('[/organizations.addUser]', () => {
 		let user;
 		let organization;
-		const roles = ['user'];
+		const roles = ['user', 'newRole'];
 
 
 		before(async () => {
