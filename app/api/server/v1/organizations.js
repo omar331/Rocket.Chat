@@ -1,7 +1,7 @@
 import {
 	saveOrganization,
 	addUserToOrganization,
-  removeOrganizationUserRole,
+	removeOrganizationUserRole,
 } from '../../../lib';
 import { API } from '../api';
 import { Organizations, OrganizationUsers } from '../../../models';

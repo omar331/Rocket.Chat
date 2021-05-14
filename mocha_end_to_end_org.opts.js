@@ -12,6 +12,6 @@ module.exports = {
 	bail: true,
 	file: 'tests/end-to-end/teardown.js',
 	spec: [
-		'tests/end-to-end/api/30-Organizations.js',
+		'tests/end-to-end/api/30-organizations.js',
 	],
 };
